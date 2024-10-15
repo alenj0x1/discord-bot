@@ -1,7 +1,11 @@
 using DiscordBot.Worker.Extensions;
+using Microsoft.AspNetCore.Builder;
 
-var builder = Host.CreateApplicationBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddServices(builder.Configuration);
 
-var host = builder.Build();
-host.Run();
+var app = builder.Build();
+
+app.MapControllers();
+
+await app.RunAsync();
